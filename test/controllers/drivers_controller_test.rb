@@ -33,22 +33,27 @@ describe DriversController do
       # Act
 
       # Assert
-
+      must_respond_with :success
     end
 
     it "responds with 404 with an invalid driver id" do
       # Arrange
       # Ensure that there is an id that points to no driver
+      invalid_driver_id = 989887763
 
       # Act
+      get "drivers/#{invalid_driver_id}"
 
       # Assert
-
+      must_respond_with :not_found
     end
   end
 
   describe "new" do
     it "responds with success" do
+      get new_driver_path
+
+      must_respond_with :success
     end
   end
 
