@@ -10,3 +10,4 @@ class Trip < ApplicationRecord
     end
   end
 end
+
