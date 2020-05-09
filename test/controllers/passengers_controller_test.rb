@@ -48,7 +48,7 @@ describe PassengersController do
       # Ensure that there is an id that points to no passenger
 
       # Act
-      get "passengers/#{@invalid_passenger_id}"
+      get "/passengers/#{@invalid_passenger_id}"
 
       # Assert
       must_respond_with :not_found
@@ -106,7 +106,7 @@ describe PassengersController do
       # Assert
       # Check that the controller redirects
       must_respond_with  :redirect
-      must_redirect_to root_path
+      must_redirect_to new_passenger_path
     end
 
     it "does not create a passenger if the form has no phone number, and responds with a redirect" do
@@ -124,7 +124,7 @@ describe PassengersController do
       # Assert
       # Check that the controller redirects
       must_respond_with  :redirect
-      must_redirect_to root_path
+      must_redirect_to new_passenger_path
     end
   end
 
@@ -150,7 +150,7 @@ describe PassengersController do
       # Ensure there is an invalid id that points to no passenger - from before block at the top
 
       # Act
-      get "passengers/#{@invalid_passenger_id}/edit"
+      get "/passengers/#{@invalid_passenger_id}/edit"
 
       # Assert
       must_respond_with :redirect
