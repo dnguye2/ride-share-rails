@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <%= link_to "Home", root_path %> |
+    <%= link_to "Drivers", drivers_path %> |
+    <%= link_to "Add Driver", new_driver_path %> |
+    <%= link_to "Passengers", passengers_path %> |
+    <%= link_to "Add Passenger", new_passenger_path %>
+    
     <%= yield %>
+
   </body>
 </html>
