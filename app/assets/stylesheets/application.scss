@@ -23,15 +23,15 @@
   background-color: #343a40;
   color: white;
   border: none;
+  margin-top: 18.5px;
+  padding: 9px 10px !important;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  padding-top: 5px;
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  line-height: normal;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -51,10 +51,36 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {color: #fff;}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #fff; color: black} 
+.dropdown:hover .dropbtn {color: #fff} 
+
+// Increasing Size of Navbar
+.navbar {
+  min-height: 80px;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+  height: 80px;
+  line-height: 80px;
+}
+
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+  }
+}
