@@ -4,7 +4,16 @@ class PassengersController < ApplicationController
   end
 
   def show
-    
+    id = params[:id].to_i
+    @passenger = Passenger.find(id)
+
+    if @passenger.nil?
+      head :not_found
+      return
+    end
+
+  rescue ActiveRecord::RecordNotFound
+    head :not_found
   end
 
   def new
@@ -14,11 +23,15 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passengers_param)
     if @passenger.save
-      redirect_to passengers_path # send them to /books path
+      redirect_to root_path # send them to /books path
     else
-      render :new, :bad_request
+      render :new
     end
+
+  rescue ActionController::ParameterMissing
+    redirect_to new_passenger_path
   end
+  
 
   def edit
     
