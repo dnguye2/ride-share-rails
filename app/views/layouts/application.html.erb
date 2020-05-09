@@ -7,16 +7,26 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <%= link_to "Home", root_path %> |
-    <%= link_to "Drivers", drivers_path %> |
-    <%= link_to "Add Driver", new_driver_path %> |
-    <%= link_to "Passengers", passengers_path %> |
-    <%= link_to "Add Passenger", new_passenger_path %>
+    <header class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <%= link_to "Home", root_path %> |
+            <%= link_to "Drivers", drivers_path %> |
+            <%= link_to "Add Driver", new_driver_path %> |
+            <%= link_to "Passengers", passengers_path %> |
+            <%= link_to "Add Passenger", new_passenger_path %>
+          </div>
+      </nav>
+    </header>
     
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
 
   </body>
 </html>
