@@ -1,31 +1,29 @@
-<h1>Passengers List</h1>
 <main>
-
-<%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
-<% if @passengers.length > 0 %>
-  <%= paginate @passengers %>
-  <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <th scope="col", class="th-sm">ID</th>
-        <th scope="col", class="th-sm">Name</th>
-        <th scope="col", class="th-sm">Phone Number</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% @passengers.each do |passenger|%>
+  <h1>Passengers List</h1>
+  <%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
+  <% if @passengers.length > 0 %>
+    <%= paginate @passengers %>
+    <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+      <thead>
         <tr>
-          <th scope="row"> <%= passenger.id %> </th>
-          <td><%= link_to passenger.name, passenger_path(passenger) %></td>
-          <td><%= passenger.phone_num %></td>
+          <th scope="col", class="th-sm">ID</th>
+          <th scope="col", class="th-sm">Name</th>
+          <th scope="col", class="th-sm">Phone Number</th>
         </tr>
-        <% end %>
-    </tbody>
-<% else %>
-  <h3>No passengers in the system!</h3>
-<% end %>
-</table>
-<%= paginate @passengers %>
+      </thead>
+      <tbody>
+          <% @passengers.each do |passenger|%>
+          <tr>
+            <th scope="row"> <%= passenger.id %> </th>
+            <td><%= link_to passenger.name, passenger_path(passenger) %></td>
+            <td><%= passenger.phone_num %></td>
+          </tr>
+          <% end %>
+      </tbody>
+  <% else %>
+    <h3>No passengers in the system!</h3>
+  <% end %>
+  </table>
+  <%= paginate @passengers %>
 </main>
-  
 
