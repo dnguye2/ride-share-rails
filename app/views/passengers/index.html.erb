@@ -1,1 +1,12 @@
 <h1>Passengers List</h1>
+<main>
+<% if @passengers.length > 0 %>
+  <ul>
+    <% @passengers.each do |passenger|%>
+      <li> <%= passenger.name %>  <%= passenger.phone_num %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No passengers in the system!</h3>
+<% end %>
+</main>

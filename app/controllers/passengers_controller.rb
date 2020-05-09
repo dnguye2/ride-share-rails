@@ -1,29 +1,42 @@
 class PassengersController < ApplicationController
-  describe "index" do
+  def index
+    @passengers = Passenger.all
+  end
+
+  def show
     
   end
 
-  describe "show" do
+  def new
+    @passenger = Passenger.new
+  end
+
+  def create
+    @passenger = Passenger.new(passengers_param)
+    if @passenger.save
+      redirect_to passengers_path # send them to /books path
+    else
+      render :new, :bad_request
+    end
+  end
+
+  def edit
     
   end
 
-  describe "new" do
+  def update
     
   end
 
-  describe "create" do
+  def destroy
     
   end
 
-  describe "edit" do
-    
-  end
 
-  describe "update" do
-    
-  end
 
-  describe "destroy" do
-    
+  private
+
+  def passengers_param
+    return params.require(:passenger).permit(:name, :phone_num)
   end
 end
