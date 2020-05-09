@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Passenger do
   before do
-    test_case_1 = Passenger.new(name: 'forrest', vin: '24')
+    test_case_1 = Passenger.new(name: 'forrest', phone_num: '24')
   end
 
   it "must have a name" do
