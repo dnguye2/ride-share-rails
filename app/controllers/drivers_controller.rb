@@ -1,29 +1,29 @@
 class DriversController < ApplicationController
-  describe "index" do
+  def index 
     
   end
 
-  describe "show" do
+  def show 
     
   end
 
-  describe "new" do
+  def new 
     
   end
 
-  describe "create" do
+  def create 
     
   end
 
-  describe "edit" do
+  def edit 
     
   end
 
-  describe "update" do
+  def update 
     
   end
 
-  describe "destroy" do
+  def destroy 
     
   end
 end

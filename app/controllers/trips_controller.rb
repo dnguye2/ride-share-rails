@@ -1,21 +1,21 @@
 class TripsController < ApplicationController
-  describe "show" do
+  def show 
     
   end
 
-  describe "create" do
+  def create 
+  
+  end
+
+  def edit 
     
   end
 
-  describe "edit" do
+  def update 
     
   end
 
-  describe "update" do
-    
-  end
-
-  describe "destroy" do
+  def destroy 
     
   end
 end
