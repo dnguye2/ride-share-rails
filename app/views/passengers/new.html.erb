@@ -1,5 +1,17 @@
 <h1>Add a New Passenger</h1>
 
+<%# Shows error message if invalid input %>
+<% if @passenger.errors.any? %>
+  <ul class="errors alert alert-danger" role="alert">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%# Form for new passenger %>
 <%= form_with model: @passenger, class: 'create-passenger' do |f| %>
   <p>Please provide the following information to add a passenger:</p>
 

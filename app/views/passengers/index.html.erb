@@ -1,12 +1,29 @@
 <h1>Passengers List</h1>
 <main>
+
+<%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
 <% if @passengers.length > 0 %>
-  <ul>
-    <% @passengers.each do |passenger|%>
-      <li> <%= passenger.name %>  <%= passenger.phone_num %> </li>
-    <% end %>
-  </ul>
+  <table class="table table-dark table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th scope="col", class="th-sm">ID</th>
+        <th scope="col", class="th-sm">Name</th>
+        <th scope="col", class="th-sm">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @passengers.each do |passenger|%>
+        <tr>
+          <th scope="row"> <%= passenger.id %> </th>
+          <td><%= passenger.name %></td>
+          <td><%= passenger.phone_num %></td>
+        </tr>
+        <% end %>
+    </tbody>
 <% else %>
   <h3>No passengers in the system!</h3>
 <% end %>
+</table>
 </main>
+  
+
