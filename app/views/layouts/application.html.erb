@@ -23,17 +23,21 @@
           <li class="nav-item active">
             <%= link_to "Home", root_path, :class => "nav-link"%><span class="sr-only">(current)</span>
           </li>
-          <li class="nav-item">
-            <%= link_to "Drivers", drivers_path, :class => "nav-link"%><span class="sr-only">(current)</span>
+          <li class="nav-item dropdown">
+          <div class="dropdown">
+            <button class="dropbtn">Drivers</button>
+            <div class="dropdown-content">
+              <%= link_to "Drivers List", drivers_path, :class => "nav-link"%><span class="sr-only">(current)</span>
+              <%= link_to "Add Driver", new_driver_path, :class => "nav-link"%><span class="sr-only">(current)</span>
+            </div>
+          </div> 
           </li>
-          <li class="nav-item">
-            <%= link_to "Add Driver", new_driver_path, :class => "nav-link"%><span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Passengers", passengers_path, :class => "nav-link"%><span class="sr-only">(current)</span>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Add Passenger", new_passenger_path, :class => "nav-link"%><span class="sr-only">(current)</span>
+          <li class="nav-item dropdown">
+          <button class="dropbtn">Passengers</button>
+            <div class="dropdown-content">
+              <%= link_to "Passengers", passengers_path, :class => "nav-link"%><span class="sr-only">(current)</span>
+              <%= link_to "Add Passenger", new_passenger_path, :class => "nav-link"%><span class="sr-only">(current)</span>
+            </div>
           </li>
         </ul>
       </div>
