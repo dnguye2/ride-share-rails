@@ -1,5 +1,6 @@
 <main>
-  <h1>Passengers List</h1>
+  <h1 class="font-weight-light mt-4">Passenger Directory</h1>
+  <p class="lead text-black-50">Click on a passenger's name to view more information and add a new trip.</p>
   <%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
   <% if @passengers.length > 0 %>
     <%= paginate @passengers %>
