@@ -1,0 +1,26 @@
+<% if @passenger.errors.any? %>
+  <ul class="errors alert alert-danger" role="alert">
+    <% @passenger.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%# Form for new passenger %>
+<%= form_with model: @passenger, class: 'create-passenger' do |f| %>
+  <p>Please provide the following information to add a passenger:</p>
+
+  <div class = "form-group">  
+    <%= f.label :name, class: "hidden"%>
+    <%= f.text_field :name, placeholder: "Name", class: 'form-control'%>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :phone_num, "Phone Number", class: "hidden" %>
+    <%= f.text_field :phone_num, placeholder: "Phone number", class: 'form-control' %>
+  </div>
+
+  <%= f.submit action_name, class: 'btn btn-secondary'%>
+<% end %>
