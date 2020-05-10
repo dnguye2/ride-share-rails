@@ -1,0 +1,25 @@
+<% if @driver.errors.any? %>
+  <ul class="errors alert alert-danger" role="alert">
+    <% @driver.errors.each do |field, message| %>
+      <li>
+        <strong><%= field.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @driver, class: 'create-driver' do |f| %>
+<p>Please provide the following information to add a driver:</p>
+
+  <div class = "form-group">  
+    <%= f.label :name, class: "hidden"%>
+    <%= f.text_field :name, placeholder: "Name", class: 'form-control'%>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :vin, "VIN", class: "hidden" %>
+    <%= f.text_field :vin, placeholder: "VIN", class: 'form-control' %>
+  </div>
+
+  <%= f.submit action_name, class: 'btn btn-secondary'%>
+<% end %>
