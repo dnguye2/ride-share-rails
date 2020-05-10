@@ -50,7 +50,7 @@ class DriversController < ApplicationController
       head :not_found
       return
     elsif @driver.update(driver_params)
-      redriect_to drivers_path
+      redirect_to drivers_path
       return
     else
       render :edit
@@ -61,7 +61,7 @@ class DriversController < ApplicationController
   def destroy 
     @driver = Driver.find_by(id: params[:id])
 
-    if driver.nil?
+    if @driver.nil?
       redirect_to drivers_path
       return
     elsif @driver.destroy
@@ -77,8 +77,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      redirect_to drivers_path
-      return
+      redirect_to drivers_path, status: :not_found
     else
       @driver.toggle!(:active)
       redirect_to driver_path(@driver.id)

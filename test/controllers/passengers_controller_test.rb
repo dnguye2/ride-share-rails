@@ -167,6 +167,28 @@ describe PassengersController do
         }
       }
     }
+
+    ####PASSING TEST
+    # before do
+    #   @passenger = Passenger.create(name: 'Mr. Peanutbutter', phone_num: '22342')
+    #   @passenger_id = @passenger.id
+    # end
+
+    # it "can update an existing passenger with valid information accurately, and redirect" do
+    #   editted_params = {
+    #     passenger: {
+    #       name: "Mr. Peanutbutter",
+    #       phone_num: "65463"
+    #     }
+    #   }
+
+    #   expect { patch passenger_path(@passenger_id), params: editted_params}.wont_change Passenger.count
+    #   must_respond_with :redirect
+
+    #   expect(Passenger.find_by(id: @passenger_id).name).must_equal editted_params[:passenger][:name]
+    #   expect(Passenger.find_by(id: @passenger_id).phone_num).must_equal editted_params[:passenger][:phone_num]
+    # end
+
     it "can update an existing Passenger with valid information accurately, and redirect" do
       # Arrange
       # Ensure there is an existing passenger saved
@@ -229,6 +251,9 @@ describe PassengersController do
       passenger.reload # refresh the passenger from the database
       must_respond_with :redirect
       expect(passenger.name).wont_be_nil
+
+      ##JUST THIS WILL MAKE TEST PASS
+      # must_respond_with :success
     end
   end
 
