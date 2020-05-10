@@ -1,6 +1,6 @@
 class DriversController < ApplicationController
   def index 
-    #driver = Driver.all
+    #@driver = Driver.all
     @driver = Driver.page(params[:page]).per(25)
   end
 
@@ -23,7 +23,7 @@ class DriversController < ApplicationController
 
   def create 
     @driver = Driver.create(driver_params)
-    if driver.id?
+    if @driver.id?
       redirect_to root_path
     else
       render :new
@@ -34,9 +34,13 @@ class DriversController < ApplicationController
   end
 
   def edit 
-    @driver = Driver.find_by(id: params[:id])
+    driver_id = params[:id].to_i
+    @driver = Driver.find_by(id: driver_id)
 
-    redirect_to drivers_path if driver.nil?
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    end
   end
 
   def update 
@@ -47,8 +51,10 @@ class DriversController < ApplicationController
       return
     elsif @driver.update(driver_params)
       redriect_to drivers_path
+      return
     else
       render :edit
+      return
     end
   end
 
@@ -63,6 +69,7 @@ class DriversController < ApplicationController
       return
     else
       render :index
+      return
     end
   end
 

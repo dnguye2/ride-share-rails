@@ -154,6 +154,7 @@ describe PassengersController do
 
       # Assert
       must_respond_with :redirect
+      must_redirect_to passengers_path
     end
   end
 
