@@ -1,0 +1,29 @@
+<main>
+  <h1>Drivers List</h1>
+  <%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
+  <% if @driver.length > 0 %>
+    <%= paginate @driver %>
+    <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th scope="col", class="th-sm">ID</th>
+          <th scope="col", class="th-sm">Name</th>
+          <th scope="col", class="th-sm">VIN</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @drivers.each do |driver|%>
+          <tr>
+            <th scope="row"> <%= driver.id %> </th>
+            <td><%= link_to driver.name, driver_path(driver) %></td>
+            <td><%= driver.vin %></td>
+          </tr>
+          <% end %>
+      </tbody>
+  <% else %>
+    <h3>No driver in the system!</h3>
+  <% end %>
+  </table>
+  <%= paginate @drivers %>
+</main>
+
