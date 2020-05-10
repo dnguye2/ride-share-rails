@@ -1,8 +1,8 @@
 <main>
   <h1>Drivers List</h1>
   <%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
-  <% if @driver.length > 0 %>
-    <%= paginate @driver %>
+  <% if @drivers.length > 0 %>
+    <%= paginate @drivers %>
     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
       <thead>
         <tr>
