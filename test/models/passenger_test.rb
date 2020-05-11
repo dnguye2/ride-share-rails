@@ -35,4 +35,10 @@ describe Passenger do
       end
     end
   end
+
+  describe "calculates riders total expenses" do
+    it "accurately calculates a rider's total expenses" do
+      
+    end
+  end
 end

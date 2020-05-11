@@ -47,4 +47,14 @@ describe Driver do
       end
     end
   end
+
+  describe "calculates driver earnings and ratings" do
+    it "accurately calculates a driver's earnings" do
+      
+    end
+
+    it "accurately calculates a driver's average rating" do
+      
+    end
+  end
 end
