@@ -53,6 +53,25 @@ describe PassengersController do
       # Assert
       must_respond_with :not_found
     end
+
+    it "has access to a link that shows all trips for that passenger" do
+      @driver = Driver.create(
+        name: 'Pops', 
+        vin: '123'
+      )
+
+      @trip = Trip.create(
+        driver_id: @driver.id,
+        passenger_id: @passenger.id
+      )
+
+      valid_trip_id = @trip.id
+
+      get "/trips/#{valid_trip_id}/passengers"
+
+      must_respond_with :success
+    end
+
   end
 
   describe "new" do

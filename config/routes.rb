@@ -3,8 +3,14 @@ Rails.application.routes.draw do
 
   root to: "homepages#index"
 
-  resources :drivers
+  resources :drivers do
+    resources :trips, only :index
+  end
+
   resources :passengers
-  resources :trips, except: [:new, :index]
+    resources :trips, only :index
+  end
+  
+  resources :trips, except: [:new]
 
 end
