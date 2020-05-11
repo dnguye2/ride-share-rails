@@ -73,13 +73,13 @@ class DriversController < ApplicationController
     end
   end
 
-  # def toggle_active
+  # def toggle_available
   #   @driver = Driver.find_by(id: params[:id])
 
   #   if @driver.nil?
   #     redirect_to drivers_path, status: :not_found
   #   else
-  #     @driver.toggle!(:active)
+  #     @driver.toggle!(:available)
   #     redirect_to driver_path(@driver.id)
   #     return
   #   end

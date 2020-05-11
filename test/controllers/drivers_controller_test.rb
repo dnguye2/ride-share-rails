@@ -174,4 +174,10 @@ describe DriversController do
       must_respond_with :redirect
     end
   end
+
+  describe "toggle_available"
+    it "changes a drivers status to unavailable (false) when assigned a trip" do
+
+    end
+  end
 end
