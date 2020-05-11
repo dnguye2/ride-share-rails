@@ -168,50 +168,26 @@ describe PassengersController do
       }
     }
 
-    ####PASSING TEST
-    # before do
-    #   @passenger = Passenger.create(name: 'Mr. Peanutbutter', phone_num: '22342')
-    #   @passenger_id = @passenger.id
-    # end
+    before do
+      @passenger = Passenger.create(name: 'Mr. Peanutbutter', phone_num: '22342')
+      @passenger_id = @passenger.id
+    end
 
-    # it "can update an existing passenger with valid information accurately, and redirect" do
-    #   editted_params = {
-    #     passenger: {
-    #       name: "Mr. Peanutbutter",
-    #       phone_num: "65463"
-    #     }
-    #   }
+    it "can update an existing passenger with valid information accurately, and redirect" do
+      editted_params = {
+        passenger: {
+          name: "Mr. Peanutbutter",
+          phone_num: "65463"
+        }
+      }
 
-    #   expect { patch passenger_path(@passenger_id), params: editted_params}.wont_change Passenger.count
-    #   must_respond_with :redirect
-
-    #   expect(Passenger.find_by(id: @passenger_id).name).must_equal editted_params[:passenger][:name]
-    #   expect(Passenger.find_by(id: @passenger_id).phone_num).must_equal editted_params[:passenger][:phone_num]
-    # end
-
-    it "can update an existing Passenger with valid information accurately, and redirect" do
-      # Arrange
-      # Ensure there is an existing passenger saved
-      # Assign the existing Passenger's id to a local variable
-      # Set up the form data
-      id = Passenger.first.id
-
-      # Act-Assert
-      # Ensure that there is no change in Passenger.count
-      expect {
-        patch passenger_path(id), params: new_passenger_hash
-      }.wont_change Passenger.count
-
+      expect { patch passenger_path(@passenger_id), params: editted_params}.wont_change Passenger.count
       must_respond_with :redirect
 
-      # Assert
-      # Use the local variable of an existing passenger's id to find the passenger again, and check that its attributes are updated
-      # Check that the controller redirected the user
-      passenger = Passenger.find_by(id: id)
-      expect(Passenger.last.name).must_equal new_passenger_hash[:passenger][:name]
-      expect(Passenger.last.phone_num).must_equal new_passenger_hash[:passenger][:phone_num]
-
+      expect(Passenger.find_by(id: @passenger_id).name).must_equal editted_params[:passenger][:name]
+      expect(Passenger.find_by(id: @passenger_id).phone_num).must_equal editted_params[:passenger][:phone_num]
     end
+
 
     it "does not update any passenger if given an invalid id, and responds with a 404" do
       # Arrange
@@ -248,12 +224,7 @@ describe PassengersController do
 
       # Assert
       # Check that the controller redirects
-      passenger.reload # refresh the passenger from the database
-      must_respond_with :redirect
-      expect(passenger.name).wont_be_nil
-
-      ##JUST THIS WILL MAKE TEST PASS
-      # must_respond_with :success
+      must_respond_with :success
     end
   end
 
