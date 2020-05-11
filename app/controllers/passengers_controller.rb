@@ -1,12 +1,12 @@
 class PassengersController < ApplicationController
   def index
-    # @passengers = Passenger.all
     @passengers = Passenger.page(params[:page]).per(25)
   end
 
   def show
     id = params[:id].to_i
     @passenger = Passenger.find(id)
+    @trips = @passenger.trips
 
     if @passenger.nil?
       head :not_found

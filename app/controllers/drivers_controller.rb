@@ -7,14 +7,15 @@ class DriversController < ApplicationController
   def show 
     id = params[:id].to_i
     @driver = Driver.find(id)
+    @trips = @driver.trips
 
     if @driver.nil?
       head :not_found
       return
     end
 
-  rescue ActiveRecord::RecordNotFound
-    head :not_found
+    rescue ActiveRecord::RecordNotFound
+      head :not_found
   end
 
   def new 
