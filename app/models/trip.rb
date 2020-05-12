@@ -11,7 +11,7 @@ class Trip < ApplicationRecord
     @drivers = Driver.all
 
     @drivers.each do |driver|
-      return driver if driver.status == true
+      return driver if driver.available == true
     end
   end
 
