@@ -3,8 +3,8 @@ class Passenger < ApplicationRecord
   validates :name, presence: true
   validates :phone_num, presence: true
 
-  def expenses
-    passenger_trips = self.trips
+  def self.expenses(trips)
+    passenger_trips = trips
     total_spent = 0
 
     return nil if passenger_trips.nil?
@@ -13,6 +13,7 @@ class Passenger < ApplicationRecord
       total_spent += trip.cost
     end
 
+    total_spent = '%.2f' % (total_spent.to_i/100.0)
     return total_spent
   end
 end

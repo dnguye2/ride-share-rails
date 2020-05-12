@@ -6,6 +6,7 @@
     <div class="card-body">
       <h5 class="card-title"> <%= @passenger.name %></h5>
       <h6 class="card-subtitle mb-2 text-muted">Phone number: <%= @passenger.phone_num %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Total expenses: $<%= @passenger_total_expenses %></h6>
       <%= button_to "Request Trip", passenger_path, method: :get, :class => "btn btn-outline-dark" %>
       <%= link_to "Edit", edit_passenger_path, :class=>"card-link" %>
       <br>

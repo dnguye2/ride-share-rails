@@ -7,6 +7,7 @@ class PassengersController < ApplicationController
     id = params[:id].to_i
     @passenger = Passenger.find(id)
     @trips = @passenger.trips
+    @passenger_total_expenses = Passenger.expenses(@trips)
 
     if @passenger.nil?
       head :not_found
