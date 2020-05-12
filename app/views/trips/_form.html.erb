@@ -1,0 +1,35 @@
+<% if @trip.errors.any? %>
+  <ul class="errors alert alert-danger" role="alert">
+    <% @trip.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%# Form for new passenger %>
+<%= form_with model: @trip, class: 'create-trip' do |f| %>
+
+  <div class = "form-group">  
+    <%= f.label :date, class: "hidden"%>
+    <%= f.text_field :date, placeholder: "Date", class: 'form-control'%>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :driver_id, "Driver", class: "hidden" %>
+    <%= f.text_field :driver_id, placeholder: "Driver", class: 'form-control' %>
+  </div>
+
+  <div class = "form-group">
+  <%= f.label :passenger_id, "Passenger", class: "hidden" %>
+  <%= f.text_field :passenger_id, placeholder: "Passenger", class: 'form-control' %>
+  </div>
+
+  <div class = "form-group">
+  <%= f.label :rating, "Rating", class: "hidden" %>
+  <%= f.text_field :rating, placeholder: "Rating", class: 'form-control' %>
+  </div>
+
+  <%= f.submit action_name, class: 'btn btn-secondary'%>
+<% end %>

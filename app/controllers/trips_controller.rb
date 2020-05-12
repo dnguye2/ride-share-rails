@@ -14,7 +14,13 @@ class TripsController < ApplicationController
   end
 
   def edit 
-    
+    trip_id = params[:id].to_i
+    @trip = Trip.find_by(id: trip_id)
+
+    if @trip.nil?
+      redirect_to trips_path
+      return
+    end
   end
 
   def update 
