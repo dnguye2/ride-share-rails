@@ -17,6 +17,8 @@ class DriversController < ApplicationController
 
     rescue ActiveRecord::RecordNotFound
       head :not_found
+    rescue ZeroDivisionError
+      0.0
   end
 
   def new 

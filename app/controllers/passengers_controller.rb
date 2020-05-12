@@ -25,7 +25,7 @@ class PassengersController < ApplicationController
   def create
     @passenger = Passenger.new(passengers_param)
     if @passenger.save
-      redirect_to root_path # send them to /books path
+      redirect_to root_path
     else
       render :new
     end

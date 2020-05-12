@@ -49,37 +49,28 @@ describe Driver do
   end
 
   describe "calculates driver earnings and ratings" do
-    it "accurately calculates a driver's earnings" do
+    before do
       @driver = Driver.create(name: "Margaret", vin: "123", available: false)
       
       @passenger = Passenger.create(name: "Eileen", phone_num: "23432")
       
-      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 3, date: Date.today, cost: 250)
-      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 4, date: Date.today, cost: 300)
-      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 5, date: Date.today, cost: 200.25)
+      trip_1 = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 3, date: Date.today, cost: 2000)
+      trip_2 = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 4, date: Date.today, cost: 3000)
+      trip_3 = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 5, date: Date.today, cost: 1000)
       
-      trip_array ^^^
-      expect(@driver.earnings(trip_array)).must_equal "596.24"
+      @trip_array =[trip_1, trip_2, trip_3]
+    end
+    it "accurately calculates a driver's earnings" do
+      expect(Driver.earnings(@trip_array)).must_equal "44.04"
     end
 
     it "returns nil for rating if driver has not completed any trips" do
-      @driver = Driver.create(name: "Margaret", vin: "123", available: false)
-      
-      @passenger = Passenger.create(name: "Eileen", phone_num: "23432")
-
-      expect(@driver.average_rating).must_equal nil
+      trip_array_nil = nil
+      expect(Driver.average_rating(trip_array_nil)).must_equal nil
     end
 
-    it "accurately calculates a driver's average rating" do
-      driver = Driver.create(name: "Margaret", vin: "123", available: false)
-      
-      @passenger = Passenger.create(name: "Eileen", phone_num: "23432")
-      
-      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 3, date: Date.today, cost: 250)
-      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 4, date: Date.today, cost: 300)
-      Trip.create(driver_id: @driver.id, passenger_id: @passenger.id, rating: 5, date: Date.today, cost: 200.25)
-      
-      expect(@driver.average_rating).must_equal "4.00"
+    it "accurately calculates a driver's average rating" do      
+      expect(Driver.average_rating(@trip_array)).must_equal 4.0
     end
   end
 end

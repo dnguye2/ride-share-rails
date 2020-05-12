@@ -53,23 +53,26 @@ describe TripsController do
 
   describe "create" do
     before do
-      @driver = Driver.create(
+      @driver = Driver.create!(
         name: 'Pops', 
         vin: '123',
+        available: true
       )
-      @passenger = Passenger.create(
+      @passenger = Passenger.create!(
         name: 'Bojack', 
         phone_num: '27'
       )
     end
 
+
     let (:trip_hash) {
-        {
+      {
+        trip: {
           driver_id: @driver.id,
           passenger_id: @passenger.id
         }
       }
-
+    }
     it "assigns a driver that is available" do
       # expect(@trip.driver.available).must_equal true
 
@@ -80,14 +83,13 @@ describe TripsController do
     end
 
     it "can create a trip for a passenger and redirects to the newly created trip" do
-      expect {
-        post trips_path, params: trip_hash
-      }.must_change 'Trip.count', 1
+      puts "This is #{@passenger.id}"
+      expect {post trips_path(@passenger.id)}.must_differ "Trip.count", 1
 
       expect(Trip.last.passenger.id).must_equal trip_hash[:trip][:passenger_id]
 
       must_respond_with :redirect
-      must_redirect_to trip_path(Trip.last.id)
+      must_redirect_to trip_path(@trip.id)
     end
   end
 
