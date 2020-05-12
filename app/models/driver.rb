@@ -3,6 +3,8 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
 
+  attribute :available, :boolean, default: -> {true}
+
   def self.earnings(trips)
     driver_trips = trips
     earnings = 0

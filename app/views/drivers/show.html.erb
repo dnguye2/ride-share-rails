@@ -5,6 +5,7 @@
   <div class="card border-dark mb-3" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title"> <%= @driver.name %></h5>
+      <h6 class="card-title mb-2" >Status: <%= @driver.available ? "Available" : "Unavailable" %></h6>
       <h6 class="card-subtitle mb-2 text-muted">VIN: <%= @driver.vin %></h6>
       <h6 class="card-subtitle mb-2 text-muted">Total earnings: $<%= @earnings %></h6>
       <h6 class="card-subtitle mb-2 text-muted">Average rating: <%= @average_rating %></h6>
