@@ -1,6 +1,5 @@
 class DriversController < ApplicationController
   def index 
-    #@driver = Driver.all
     @drivers = Driver.page(params[:page]).per(25)
   end
 

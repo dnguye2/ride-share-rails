@@ -27,7 +27,7 @@
           <th scope="col", class="th-sm">Driver</th>
           <th scope="col", class="th-sm">Cost</th>
           <th scope="col", class="th-sm">Rating</th>
-          <th scope="col", class="th-sm">Delete</th>
+          <th scope="col", class="th-sm">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -37,9 +37,15 @@
             <td><%= trip.date %></td>
             <td><%= link_to @passenger.name, passenger_path(@passenger) %></td>
             <td><%= link_to trip.driver.name, driver_path(trip.driver_id) %></td>
-            <td><%= trip.cost %></td>
+            <td><%= '%.2f' % (trip.cost.to_i/100.0) %></td>
             <td><%= trip.rating %></td>
-            <td>Add delete button here</td>
+            <td>
+              <%= link_to "Details", trip_path(trip) %>
+              <br>
+              <%= link_to "TODO Edit", passenger_path(@passenger) %>
+              <br>
+              <%= link_to "TODO Delete", passenger_path(@passenger) %>
+            </td>
           </tr>
           <% end %>
       </tbody>
