@@ -10,7 +10,11 @@ class Passenger < ApplicationRecord
     return nil if passenger_trips.nil?
 
     passenger_trips.each do |trip|
-      total_spent += trip.cost
+      if trip.cost.nil?
+        0
+      else
+        total_spent += trip.cost
+      end
     end
 
     total_spent = '%.2f' % (total_spent.to_i/100.0)
