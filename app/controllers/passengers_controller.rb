@@ -70,6 +70,10 @@ class PassengersController < ApplicationController
       return
     end
 
+    @passenger.trips.each do |trip|
+      trip.passenger = nil
+    end
+
     @passenger.destroy
 
     redirect_to passengers_path
