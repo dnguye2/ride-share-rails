@@ -8,27 +8,34 @@
   </ul>
 <% end %>
 
+
+
 <%# Form for new passenger %>
 <%= form_with model: @trip, class: 'create-trip' do |f| %>
 
   <div class = "form-group">  
-    <%= f.label :date, class: "hidden"%>
+    <%= f.label :date, class: 'form-text'%>
     <%= f.text_field :date, placeholder: "Date", class: 'form-control'%>
   </div>
 
   <div class = "form-group">
-    <%= f.label :driver_id, "Driver", class: "hidden" %>
-    <%= f.text_field :driver_id, placeholder: "Driver", class: 'form-control' %>
+    <%= f.label :driver_id %>
+    <%= f.select :driver_id, Driver.all.map{ |driver| [driver.name, driver.id]} %>
   </div>
 
   <div class = "form-group">
-  <%= f.label :passenger_id, "Passenger", class: "hidden" %>
-  <%= f.text_field :passenger_id, placeholder: "Passenger", class: 'form-control' %>
+    <%= f.label :passenger_id %>
+    <%= f.select :passenger_id, Passenger.all.map{ |passenger| [passenger.name, passenger.id] } %>
   </div>
 
   <div class = "form-group">
-  <%= f.label :rating, "Rating", class: "hidden" %>
-  <%= f.text_field :rating, placeholder: "Rating", class: 'form-control' %>
+    <%= f.label :rating, "Rating"%>
+    <%= f.select :rating, [1, 2, 3, 4, 5], class: 'form-control' %>
+  </div>
+
+  <div class = "form-group">
+    <%= f.label :cost, "Cost (in cents)"%>
+    <%= f.text_field :cost, placeholder: "Cost", class: 'form-control' %>
   </div>
 
   <%= f.submit action_name, class: 'btn btn-secondary'%>
