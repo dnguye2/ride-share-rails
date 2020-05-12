@@ -18,7 +18,6 @@ class Driver < ApplicationRecord
     earnings = '%.2f' % (earnings.to_i/100.0)
     return earnings
   end
-  
 
   def self.average_rating(trips)
     return nil if trips.nil?
@@ -28,7 +27,6 @@ class Driver < ApplicationRecord
     in_progress_trips = 0
     all_ratings = 0
     
-    
     driver_trips.each do |trip|
       if trip.rating.nil?
         in_progress_trips += 1
@@ -37,7 +35,6 @@ class Driver < ApplicationRecord
       end
     end
 
-    # return 0 if (driver_trips.length - in_progress_trips = 0)
     average = (all_ratings/(driver_trips.length - in_progress_trips)).round(2)
     return average
   end

@@ -16,7 +16,6 @@
 </div>
 
 <h1 class="font-weight-light mt-4 d-flex justify-content-center">Trips</h1>
-  <%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
   <% if @trips.length > 0 %>
     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
       <thead>
@@ -43,7 +42,7 @@
                 <%= form_for trip, :method => :put, class: 'create-trip' do |f| %>
                   <div class = "form-group">
                     <%= f.label :rating, "Rating", class: "hidden"%>
-                    <%= f.select :rating, [1, 2, 3, 4, 5], class: 'form-control' %>
+                    <%= f.select :rating, [1, 2, 3, 4, 5], class: 'form-custom-select' %>
                   </div>
                     <%= f.submit "Submit", class: 'btn btn-outline-dark btn-sm'%>
                   <% end %>

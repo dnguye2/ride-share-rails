@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root to: "homepages#index"
 
+  get "/homepages/:page" => "homepages#show"
+
   resources :drivers do
     resources :trips, only: [:index]
   end

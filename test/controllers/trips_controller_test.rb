@@ -67,25 +67,14 @@ describe TripsController do
 
     let (:trip_hash) {
       {
-        trip: {
-          driver_id: @driver.id,
-          passenger_id: @passenger.id
-        }
+          passenger: @passenger.id
       }
     }
-    it "assigns a driver that is available" do
-      # expect {
-      #   post trips_path, params: trip_hash
-      # } 'Trip.driver.available', true
-    end
 
     it "can create a trip for a passenger and redirects to the newly created trip" do
-      expect {post trips_path}.must_differ "Trip.count", 1
-
-      expect(Trip.last.passenger.id).must_equal trip_hash[:trip][:passenger_id]
+      expect {post trips_path, params: trip_hash}.must_change "Trip.count", 1
 
       must_respond_with :redirect
-      # must_redirect_to trip_path(Trip.id)
     end
   end
 
@@ -102,14 +91,6 @@ describe TripsController do
       )
 
       @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id)
-    end
-
-    it "can add a rating" do
-      #if trip not in progress, rating != nil
-      # in_progress_trip = Trip.new(updated_at: nil)
-      # in_progress_trip.updated_at == nil
-      
-      # assert_not_nil(in_progress_trip.rating)
     end
 
     it "responds with success when getting the edit page for an existing, valid trip" do
@@ -130,19 +111,51 @@ describe TripsController do
   end
 
   describe "update" do
+    before do
+      @driver = Driver.create(
+        name: 'Spongebob', 
+        vin: '123',
+        available: true
+      )
+      @passenger = Passenger.create(
+        name: 'Mrs. Puff', 
+        phone_num: '8888888888'
+      )
+
+      @driver2 = Driver.create(
+        name: 'Squidward', 
+        vin: '123',
+        available: true
+      )
+
+      @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id)
+    end
+
     it "can update an existing trip with valid information accurately, and redirect" do
-      # edited_params = {
-      #   driver: {
-      #     name: "Muscle Woman",
-      #     vin: "34234"
-      #   }
-      # }
+      edited_params = {
+        trip: {
+          driver_id: @driver2.id
+        }
+      }
 
-      # expect { patch driver_path(@driver_id), params: edited_params}.wont_change Trip.count
-      # must_respond_with :redirect
+      expect { patch trip_path(@trip.id), params: edited_params}.wont_change Trip.count
+      must_respond_with :redirect
 
-      # expect(Trip.find_by(id: @trip_id).name).must_equal edited_params[:trip][:passenger_id]
+      expect(Trip.find_by(id: @trip.id).driver_id).must_equal edited_params[:trip][:driver_id]
+    end
 
+    it "rating is initially nil after a trip is created and can add a rating after a trip is created" do
+      expect @trip.rating.must_equal nil
+
+      edited_params = {
+        trip: {
+          rating: 4
+        }
+      }
+
+      expect { patch trip_path(@trip.id), params: edited_params}.wont_change Trip.count
+
+      expect(Trip.find_by(id: @trip.id).rating).must_equal edited_params[:trip][:rating]
     end
   end
 

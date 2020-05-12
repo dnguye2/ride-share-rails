@@ -12,6 +12,7 @@ class TripsController < ApplicationController
   def create 
     avail_driver = Trip.find_driver
     avail_driver_id = avail_driver.id
+    
     passenger_id = params[:passenger]
 
     @trip = Trip.new(passenger_id: passenger_id, driver_id: avail_driver_id)
@@ -44,7 +45,6 @@ class TripsController < ApplicationController
       redirect_to root_path
       return
     elsif @trip.update(trip_params)
-      # @trip.update(rating: params[:trip][:rating])
       @trip.driver.available = false
       @trip.driver.save
       redirect_to trip_path(@trip.id)

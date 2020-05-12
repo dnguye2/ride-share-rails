@@ -1,7 +1,6 @@
 <main>
   <h1 class="font-weight-light mt-4">Driver Directory</h1>
   <p class="lead text-black-50">Click on a driver's name to view more information.</p>
-  <%# Table styling source: https://getbootstrap.com/docs/4.4/content/tables/ %>
   <% if @drivers.length > 0 %>
     <%= paginate @drivers %>
     <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">

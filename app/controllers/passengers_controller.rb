@@ -36,12 +36,10 @@ class PassengersController < ApplicationController
   
 
   def edit
-    # @passenger = Passenger.find_by(id: params[:id])
     passenger_id = params[:id].to_i
     @passenger = Passenger.find_by(id: passenger_id)
 
     if @passenger.nil?
-      # head :not_found
       redirect_to passengers_path
       return
     end
@@ -53,10 +51,10 @@ class PassengersController < ApplicationController
       head :not_found 
       return
     elsif @passenger.update(passengers_param)
-      redirect_to passengers_path # go to the index so we can see the passenger in the list
+      redirect_to passengers_path
       return
-    else # when save fails
-      render :edit # show the new passenger form view again
+    else 
+      render :edit
       return
     end
   end
@@ -80,8 +78,7 @@ class PassengersController < ApplicationController
     return
   end
 
-
-
+  
   private
 
   def passengers_param
