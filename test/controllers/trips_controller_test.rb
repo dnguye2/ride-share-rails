@@ -131,26 +131,55 @@ describe TripsController do
 
   describe "update" do
     it "can update an existing trip with valid information accurately, and redirect" do
-      # editted_params = {
+      # edited_params = {
       #   driver: {
       #     name: "Muscle Woman",
       #     vin: "34234"
       #   }
       # }
 
-      # expect { patch driver_path(@driver_id), params: editted_params}.wont_change Driver.count
+      # expect { patch driver_path(@driver_id), params: edited_params}.wont_change Trip.count
       # must_respond_with :redirect
 
-      # expect(Driver.find_by(id: @driver_id).name).must_equal editted_params[:driver][:name]
-      # expect(Driver.find_by(id: @driver_id).vin).must_equal editted_params[:driver][:vin]
+      # expect(Trip.find_by(id: @trip_id).name).must_equal edited_params[:trip][:passenger_id]
+
     end
   end
 
   describe "destroy" do
-    it "can delete a trip and redirect" do
-      
+    before do
+      @driver = Driver.create(
+        name: 'Spongebob', 
+        vin: '123',
+        available: true
+      )
+      @passenger = Passenger.create(
+        name: 'Mrs. Puff', 
+        phone_num: '8888888888'
+      )
+
+      @trip = Trip.create(driver_id: @driver.id, passenger_id: @passenger.id)
     end
-   
+
+    it "destroys the trip instance in db when trip exists, then redirects" do
+      valid_trip_id = @trip.id
+
+      expect {
+        delete trip_path(valid_trip_id)
+      }.must_differ 'Trip.count', -1
+
+       must_respond_with :redirect
+    end
+
+    it "does not change the db when the trip does not exist, then responds with redirect" do
+      invalid_trip_id = 38921074938237438
+
+      expect {
+        delete passenger_path(invalid_trip_id)
+      }.wont_change Trip.count
+
+      must_respond_with :redirect
+    end
    
   end
 end
