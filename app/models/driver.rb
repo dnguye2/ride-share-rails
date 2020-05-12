@@ -5,7 +5,7 @@ class Driver < ApplicationRecord
 
   attribute :available, :boolean, default: -> {true}
 
-  def self.earnings
+  def self.earnings(trips)
     driver_trips = trips
     earnings = 0
 
@@ -19,7 +19,8 @@ class Driver < ApplicationRecord
     return earnings
   end
   
-  def self.average_rating
+
+  def self.average_rating(trips)
     driver_trips = trips
     in_progress_trips = 0
     all_ratings = 0
@@ -34,8 +35,9 @@ class Driver < ApplicationRecord
       end
     end
 
-    return nil if (driver_trips.length - in_progress_trips = 0)
-    return average = (all_ratings/(driver_trips.length - in_progress_trips)).round(2)
-
+    # return nil if (driver_trips.length - in_progress_trips = 0)
+    average = (all_ratings/(driver_trips.length - in_progress_trips)).round(2)
+    return average
   end
+
 end
