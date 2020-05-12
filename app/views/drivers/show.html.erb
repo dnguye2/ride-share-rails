@@ -7,6 +7,8 @@
     <div class="card-body">
       <h5 class="card-title"> <%= @driver.name %></h5>
       <h6 class="card-subtitle mb-2 text-muted">VIN: <%= @driver.vin %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Total earnings: $<%= @earnings %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">Average rating: <%= @average_rating %></h6>
       <%= link_to "Edit", edit_driver_path, :class=>"card-link" %>
       <br>
       <%= link_to "Delete", driver_path(@driver), method: :delete, data: {confirm: "Are you sure you want to delete this driver?"}, :class=>"card-link"%>
@@ -34,8 +36,8 @@
           <tr>
             <th scope="row"> <%= trip.id %> </th>
             <td><%= trip.date %></td>
-            <td><%= link_to @driver.name, driver_path(@driver) %></td>
             <td><%= link_to trip.passenger.name, passenger_path(trip.passenger_id) %></td>
+            <td><%= link_to @driver.name, driver_path(@driver) %></td>
             <td><%= trip.cost %></td>
             <td><%= trip.rating %></td>
             <td>Add delete button here</td>

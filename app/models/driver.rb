@@ -3,8 +3,8 @@ class Driver < ApplicationRecord
   validates :name, presence: true
   validates :vin, presence: true
 
-  def earnings
-    driver_trips = self.trips
+  def self.earnings(trips)
+    driver_trips = trips
     earnings = 0
 
     driver_trips.each do |trip|
@@ -13,11 +13,12 @@ class Driver < ApplicationRecord
       earnings += trip_earnings
     end
 
-    return earnings.round(2)
+    earnings = '%.2f' % (earnings.to_i/100.0)
+    return earnings
   end
   
-  def average_rating
-    driver_trips = self.trips
+  def self.average_rating(trips)
+    driver_trips = trips
     in_progress_trips = 0
     all_ratings = 0
     
@@ -27,12 +28,12 @@ class Driver < ApplicationRecord
       if trip.rating.nil?
         in_progress_trips += 1
       else
-        all_ratings += trip.rating
+        all_ratings += trip.rating.to_f
       end
     end
 
-    average = all_ratings/(driver_trips.length - in_progress_trips)
-
+    average = (all_ratings/(driver_trips.length - in_progress_trips)).round(2)
+    
     return average
   end
 end

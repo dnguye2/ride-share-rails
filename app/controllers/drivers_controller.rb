@@ -8,6 +8,8 @@ class DriversController < ApplicationController
     id = params[:id].to_i
     @driver = Driver.find(id)
     @trips = @driver.trips
+    @earnings = Driver.earnings(@trips)
+    @average_rating = Driver.average_rating(@trips)
 
     if @driver.nil?
       head :not_found
