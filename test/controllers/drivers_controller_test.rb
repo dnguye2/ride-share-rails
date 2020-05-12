@@ -36,14 +36,6 @@ describe DriversController do
 
       must_respond_with :not_found
     end
-
-    it "has access to a link that shows all trips for that driver" do
-      valid_trip_id = @trip.id
-
-      get "/trips/#{valid_trip_id}/driver"
-
-      must_respond_with :success
-    end
   end
 
   describe "new" do
@@ -180,12 +172,6 @@ describe DriversController do
       expect{ delete driver_path(-1) }.wont_change "Driver.count"
 
       must_respond_with :redirect
-    end
-  end
-
-  describe "toggle_available" do
-    it "changes a drivers status to unavailable (false) when assigned a trip" do
-
     end
   end
 end
