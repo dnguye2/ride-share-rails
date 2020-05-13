@@ -3,6 +3,7 @@
 
 <div class="d-flex justify-content-center">
   <div class="card border-dark mb-3" style="width: 18rem;">
+    <img class="card-img-top" src="<%= @url + "#{@driver.vin}" %>" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title"> <%= @driver.name %></h5>
       <h6 class="card-title mb-2" >Status: <%= @driver.available ? "Available" : "Unavailable" %></h6>

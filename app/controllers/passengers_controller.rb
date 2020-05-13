@@ -9,6 +9,10 @@ class PassengersController < ApplicationController
     @trips = @passenger.trips
     @passenger_total_expenses = Passenger.expenses(@trips)
 
+    if !@passenger.nil?
+      @url = "http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="
+    end
+
     if @passenger.nil?
       head :not_found
       return

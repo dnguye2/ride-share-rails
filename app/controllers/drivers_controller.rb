@@ -10,6 +10,10 @@ class DriversController < ApplicationController
     @earnings = Driver.earnings(@trips)
     @average_rating = Driver.average_rating(@trips)
 
+    if !@driver.nil?
+      @url = "http://thecatapi.com/api/images/get?format=src&type=gif&timestamp="
+    end
+
     if @driver.nil?
       head :not_found
       return
