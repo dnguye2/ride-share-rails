@@ -43,7 +43,7 @@
                 <%= form_for trip, :method => :put, class: 'create-trip' do |f| %>
                   <div class = "form-group">
                     <%= f.label :rating, "Rating", class: "hidden"%>
-                    <%= f.select :rating, [1, 2, 3, 4, 5], class: 'form-custom-select' %>
+                    <%= f.select :rating, [1, 2, 3, 4, 5], {}, {class: "form-control form-control-sm"} %>
                   </div>
                     <%= f.submit "Submit", class: 'btn btn-outline-dark btn-sm'%>
                   <% end %>
